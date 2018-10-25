@@ -1,0 +1,123 @@
+<mvc:View 
+	controllerName="dk.dhek.SmartTableAndGatewayServices.controller.Main" 
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:st="sap.ui.comp.smarttable" 
+	xmlns:smartVariantManagement="sap.ui.comp.smartvariants" 
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:form="sap.ui.comp.smartform"
+	displayBlock="true" 
+	xmlns="sap.m"
+>
+	
+	
+	<App id="idAppControl">
+		<pages>
+			<Page title="{i18n>title}">
+				<content>
+					
+					<Panel expanded="true">
+						<form:SmartForm 
+							id="smartformId" 
+							editTogglable="true" 
+							title="My great MOCK title" 
+							flexEnabled="false"
+						>
+							<form:Group label="SmartForm Group 1">
+								<form:GroupElement>
+									<!--smartField:SmartLabel labelFor="myId1"/-->
+									<smartField:SmartField id="myId1" value="{employeeId}" />
+								</form:GroupElement>
+								
+								<form:GroupElement>
+									<!--smartField:SmartLabel labelFor="myId2"/-->
+									<smartField:SmartField id="myId2" value="{firstName}" />
+								</form:GroupElement>	
+									
+								<form:GroupElement>
+									<!--smartField:SmartLabel labelFor="myId3"/-->
+									<smartField:SmartField id="myId3" value="{lastName}" />
+								</form:GroupElement>
+									
+								<form:GroupElement>
+									<!--smartField:SmartLabel labelFor="myId4"/-->
+									<smartField:SmartField id="myId4" value="{comment}" />
+								</form:GroupElement>
+							</form:Group>
+							
+							<form:Group label="SmartForm Group 2">
+								<form:GroupElement>
+									<smartField:SmartField value="{country}" />
+								</form:GroupElement>
+								
+								<form:GroupElement>
+									<smartField:SmartField value="{comment}"/>
+								</form:GroupElement>	
+							</form:Group>
+						</form:SmartForm>
+						
+						<Button
+							id="btnSubmitId"
+							text="Submit"
+							type="Accept"
+							icon="sap-icon://complete"
+							press="onSubmit"
+						/>
+					</Panel>
+
+					<st:SmartTable 
+						id="stEmployees"
+						tableType="ResponsiveTable" 
+						editable="false" 
+						enableAutoBinding="true" 
+						entitySet="EmployeeSet" 
+						useTablePersonalisation="true" 
+						header="Employees" 
+						showRowCount="true" 
+						ignoredFields="" 
+						showTablePersonalisation="true"
+						showVariantManagement="false"
+						justifyContent="Start"
+						showFullScreenButton="true"
+					>
+
+						<Table 
+							fixedLayout="true" 
+							growing="true" 
+							growingThreshold="50" 
+							growingScrollToLoad="true" 
+							mode="SingleSelectLeft" 
+							selectionChange="onItemSelect"
+							includeItemInSelection="true">
+						   	
+						   	<columns>
+								<Column 
+									id="comment"
+									hAlign="Left" 
+									visible="true"
+						    		customData:p13nData='\{"columnIndex":"99", "leadingProperty":"comment", "columnKey":"comment", "sortProperty":"comment", "filterProperty": "comment", "type":"empty string"\}'>
+								    	<header>
+											<Label text="Comment"/> 
+								    	</header>
+								</Column>
+							</columns>
+							
+							<ColumnListItem 
+								id="columnListItem" 
+								vAlign="Middle">
+								<cells>
+									<Text text="{path:'comment'}" />
+								</cells>
+						   	</ColumnListItem>
+
+						</Table>
+
+					</st:SmartTable>
+
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
